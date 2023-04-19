@@ -1,6 +1,6 @@
 # DevOps Learning Project
 
-### This repository contains a small web application written in Python with Flask that provides weather forecasts for 7 days by city name provided as input by the client, with added functionality of another microservice for image download from S3 bucket using boto3, as well as an HTML page and backend directory to backup history of requests made. This application was created to learn and practice DevOps skills.
+### This repository contains a small web application written in Python with Flask that provides weather forecasts for 7 days by city name provided as input by the client, with added functionality of an HTML page and backend directory to backup history of requests made by the client, as well as an image download from S3 bucket using boto3 . This application was created to learn and practice DevOps skills.
 
 ## Virtualization -
 deployed the application on a VM on an ESXi server.
