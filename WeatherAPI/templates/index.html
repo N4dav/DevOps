@@ -1,0 +1,72 @@
+<head>
+    <style>
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+
+.button {
+  background-color: #3C7AC1; /* Blue */
+  border: none;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  display: inline-block;
+  font-size: 30px;
+  padding: 14px 40px;
+}
+<!--body {-->
+<!--  background-color: {{ bg_color }};-->
+<!--}-->
+
+</style>
+</head>
+<body>
+    <div
+         style="background-image: url('https://img.freepik.com/premium-photo/wood-table-background-autumn-vineyard-country-landscape_31965-1368.jpg?w=1060');
+         height: 50vh; background-repeat: no-repeat; background-size: cover; background-position: center;">
+    </div>
+    <center>
+        <form method="post">
+            <h1><input type="text" name="City"/></h1>
+            <button class="button">Forecast Me Bro!</button>
+        </form>
+        <a href="/s3"
+           download="Sky_img">
+            <button class="button">Download Sky Image</button>
+
+        <a href="/db">
+            <button class="button">Store This Forecast on DynamoDB</button>
+        </a>
+
+    </center>
+    <center>
+        {% if an_json %}
+        <h1>7-Day Forecast in {{city}}, {{country}}</h1>
+        <table style="margin-left: 20px;">
+            <th>
+                <tr style="color: blue; ">
+                    <th>Date</th>
+                    <th>Min-Max Temperature</th>
+                </tr>
+            </th>
+
+            {% for date in an_json.keys() %}
+            <tr>
+                <td>{{date}}</td>
+                <td>{{an_json[date]}}</td>
+
+                {%endfor%}
+            </tr>
+            {% endif %}
+    </center>
+</body>

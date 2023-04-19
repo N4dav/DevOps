@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: weather
+  template:
+    metadata:
+      labels:
+        app: weather
+    spec:
+      containers:
+      - name: weather
+        image: 808633698297.dkr.ecr.eu-central-1.amazonaws.com/weather:latest
+        ports:
+        - containerPort: 9090
+        env:
+        - name: ELB_NAME
+          value: "${ELB_NAME}"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: weather
+spec:
+  type: LoadBalancer
+  selector:
+    app: weather
+  ports:
+      # 'Port' is with the LB, 'nodePort' is the one exposed by the cluster, 'targetPort' is the container(=app) port
+      
+    - port: 80
+      targetPort: 9090
+      protocol: TCP
+      nodePort: 30013
