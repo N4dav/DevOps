@@ -36,7 +36,7 @@ pipeline {
     stage('Deploy to EKS') {
         steps {
             sh '''
-            kubectl apply -f /home/ec2-user/jenkins/workspace/PyCalc/flask-calculator-main/calc-deploy.yml
+            kubectl apply -f /home/ec2-user/jenkins/workspace/WeatherAPI/deployment.yml
             export ELB_NAME=\$(kubectl get svc weather -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
             kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
             kubectl apply -f /home/ec2-user/jenkins/workspace/WeatherAPI/K8s/ingress.yml
